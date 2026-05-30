@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taim Salimoun — Career Development Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #162236;
+    --navy-light: #1E3148;
+    --steel: #2A4A6B;
+    --accent: #4B9FE1;
+    --accent-bright: #6DB8F5;
+    --gold: #E8C547;
+    --white: #F4F6FA;
+    --white-dim: rgba(244,246,250,0.7);
+    --white-faint: rgba(244,246,250,0.12);
+    --white-faintest: rgba(244,246,250,0.06);
+    --border: rgba(75,159,225,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2.5rem;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.08em; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--white-dim); text-decoration: none; font-size: 13px; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent-bright); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 7rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(75,159,225,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 1.5rem;
+    border: 1px solid var(--border); border-radius: 2rem;
+    padding: 6px 18px; display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(3rem, 8vw, 6.5rem); line-height: 0.95;
+    letter-spacing: -0.02em; margin-bottom: 1.5rem;
+    color: var(--white);
+  }
+  .hero h1 span { color: var(--accent-bright); }
+  .hero-sub {
+    font-size: 16px; color: var(--white-dim); max-width: 520px;
+    line-height: 1.6; margin-bottom: 3rem;
+  }
+  .hero-meta {
+    display: flex; gap: 2.5rem; justify-content: center;
+    font-size: 12px; letter-spacing: 0.08em; color: var(--white-dim);
+    text-transform: uppercase;
+  }
+  .hero-meta span::before { content: '— '; }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim);
+  }
+  .scroll-hint::after {
+    content: ''; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    display: block;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 2rem; max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 200px; }
+
+  /* ── GOAL SETTING ── */
+  .vision-block {
+    background: var(--white-faintest);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 2.5rem;
+    margin-bottom: 2rem; position: relative; overflow: hidden;
+  }
+  .vision-block::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+  }
+  .vision-block h3 {
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .vision-block p { color: var(--white-dim); font-size: 15px; line-height: 1.75; }
+
+  .smart-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem; margin-top: 2rem;
+  }
+  .smart-card {
+    background: var(--white-faintest); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem;
+  }
+  .smart-letter {
+    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+    color: var(--accent-bright); opacity: 0.5; line-height: 1; margin-bottom: 0.5rem;
+  }
+  .smart-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.5rem; font-weight: 500; }
+  .smart-text { font-size: 13px; color: var(--white-dim); line-height: 1.6; }
+
+  /* ── NETWORKING ── */
+  .quote-block {
+    border-left: 2px solid var(--accent);
+    padding: 1.25rem 2rem; margin: 2.5rem 0;
+    background: var(--white-faintest); border-radius: 0 12px 12px 0;
+  }
+  .quote-block q { font-size: 16px; font-style: italic; color: var(--white); line-height: 1.7; }
+  .quote-block cite { display: block; margin-top: 0.75rem; font-size: 12px; color: var(--accent); letter-spacing: 0.08em; }
+
+  .insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .insight-card {
+    background: var(--white-faintest); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+  }
+  .insight-card h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+  .insight-card p { font-size: 13px; color: var(--white-dim); line-height: 1.65; }
+
+  /* ── TEAMWORK ── */
+  .trait-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .trait-card {
+    border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;
+    position: relative; overflow: hidden;
+    background: var(--white-faintest);
+  }
+  .trait-num {
+    position: absolute; top: 1rem; right: 1.25rem;
+    font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
+    color: var(--accent); opacity: 0.08; line-height: 1;
+  }
+  .trait-card h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+  .trait-card p { font-size: 13px; color: var(--white-dim); line-height: 1.65; }
+
+  /* ── PERSONAL SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .skill-block {
+    background: var(--white-faintest); border: 1px solid var(--border);
+    border-radius: 14px; padding: 2rem;
+  }
+  .skill-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+  .skill-block h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; }
+  .skill-block p { font-size: 13px; color: var(--white-dim); line-height: 1.65; }
+
+  /* ── CAREER EXPLORATION ── */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.375rem; top: 6px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--navy);
+  }
+  .timeline-item h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .timeline-item p { font-size: 14px; color: var(--white-dim); line-height: 1.7; }
+
+  /* ── CAREER GUIDANCE ── */
+  .guidance-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .guidance-card {
+    background: var(--white-faintest); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.75rem;
+  }
+  .guidance-card h4 { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+  .guidance-card ul { list-style: none; }
+  .guidance-card li { font-size: 13px; color: var(--white-dim); padding: 0.4rem 0; border-bottom: 1px solid var(--white-faintest); line-height: 1.5; }
+  .guidance-card li:last-child { border-bottom: none; }
+  .guidance-card li::before { content: '↗ '; color: var(--accent); font-size: 11px; }
+
+  /* ── HIGHLIGHT ── */
+  .highlight-box {
+    background: var(--white-faintest); border: 1px solid var(--border);
+    border-radius: 20px; padding: 3.5rem; text-align: center; position: relative; overflow: hidden;
+  }
+  .highlight-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(75,159,225,0.06), transparent);
+    pointer-events: none;
+  }
+  .highlight-box h2 {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800; color: var(--white); line-height: 1.1; margin-bottom: 1.5rem;
+  }
+  .highlight-box h2 span { color: var(--accent-bright); }
+  .highlight-box p { color: var(--white-dim); max-width: 580px; margin: 0 auto 2rem; font-size: 15px; line-height: 1.75; }
+  .blocks-row { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2rem; }
+  .block-pill {
+    background: var(--white-faintest); border: 1px solid var(--border);
+    border-radius: 2rem; padding: 8px 20px;
+    font-size: 12px; letter-spacing: 0.08em; color: var(--accent-bright);
+    text-transform: uppercase; font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem;
+    text-align: center; font-size: 12px; color: var(--white-dim);
+    letter-spacing: 0.06em;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="#">T. SALIMOUN</a>
+  <ul class="nav-links">
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#networking">Networking</a></li>
+    <li><a href="#teamwork">Teamwork</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#exploration">Exploration</a></li>
+    <li><a href="#guidance">Guidance</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Career Development Portfolio</div>
+  <h1>Engineering<br>the <span>Future</span></h1>
+  <p class="hero-sub">A strategic blueprint for becoming a data-empowered industrial engineer — integrating AI, logistics, and human impact.</p>
+  <div class="hero-meta">
+    <span>Taim Salimoun</span>
+    <span>Constructor University</span>
+    <span>2025 – 2026</span>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</div>
+
+<!-- 01 GOAL SETTING -->
+<section id="goals">
+  <div class="section-label fade-in">01 — Goal Setting & Impact</div>
+
+  <div class="vision-block fade-in">
+    <h3>My Vision</h3>
+    <p>Establish myself as a Data Empowered Industrial Engineer with deep knowledge in logistics and data modelling. I aspire to integrate Artificial Intelligence into Industrial Engineering by building sophisticated Digital Twins and automated decision support systems for complex logistics — resulting in efficiency enhancement for the greater aim of improving society.</p>
+  </div>
+
+  <div class="vision-block fade-in">
+    <h3>Theoretical Application</h3>
+    <p>This vision presents a significant level of challenge. Managing such high task complexity requires strong personal commitment and continuous feedback loops during system testing — nonstop checking and adjusting to ensure real-world impact.</p>
+  </div>
+
+  <div class="smart-grid">
+    <div class="smart-card fade-in">
+      <div class="smart-letter">S</div>
+      <div class="smart-label">Specific</div>
+      <div class="smart-text">Create AI-enhanced Digital Twins to address complex logistics issues, prioritising ethical, real-world impact while remaining technically efficient.</div>
+    </div>
+    <div class="smart-card fade-in">
+      <div class="smart-letter">M</div>
+      <div class="smart-label">Measurable</div>
+      <div class="smart-text">Target a 15% reduction in carbon emissions and a 20% increase in eco-friendly routing efficiency across modelled networks.</div>
+    </div>
+    <div class="smart-card fade-in">
+      <div class="smart-letter">A</div>
+      <div class="smart-label">Achievable</div>
+      <div class="smart-text">Apply advanced statistics, data analysis, and EOQ modelling already practised in university coursework and research projects.</div>
+    </div>
+    <div class="smart-card fade-in">
+      <div class="smart-letter">R</div>
+      <div class="smart-label">Relevant</div>
+      <div class="smart-text">Ensure each technological enhancement aligns with core values — balancing corporate profit with enduring environmental sustainability.</div>
+    </div>
+    <div class="smart-card fade-in">
+      <div class="smart-letter">T</div>
+      <div class="smart-label">Time-Bound</div>
+      <div class="smart-text">Create and implement a fully operational, socially responsible supply chain optimisation model by May 2028.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 NETWORKING -->
+<section id="networking">
+  <div class="section-label fade-in">02 — Interviewing & Networking</div>
+
+  <div class="vision-block fade-in">
+    <h3>Key Realisation</h3>
+    <p>Through the career fair, I learned that technical engineering skills are just the baseline. Mastering strategic communication, active networking, and cultural adaptability is essential for real momentum in Germany's industrial sector. It's not only about what you build — it's how you connect, how you read the room, and how you interpret the unspoken rules.</p>
+  </div>
+
+  <div class="quote-block fade-in">
+    <q>Being in front of a class involves psychological aspects, and also organisational aspects.</q>
+    <cite>— Vocational Training Manager, Rossmann</cite>
+  </div>
+
+  <div class="insight-grid">
+    <div class="insight-card fade-in">
+      <h4>The Competitive Landscape</h4>
+      <p>In Germany, the job market is very competitive. A standard toolkit of hard skills is essentially the minimum requirement — strong soft skills are the differentiator.</p>
+    </div>
+    <div class="insight-card fade-in">
+      <h4>Language is Non-Negotiable</h4>
+      <p>Every interaction confirmed that German fluency is an absolute baseline — the core operational language needed to navigate corporate administration and join training programmes.</p>
+    </div>
+    <div class="insight-card fade-in">
+      <h4>Interview Insights</h4>
+      <p>Actively listening to the Rossmann representative revealed how important adaptability and social intelligence are. Seamlessly networking with industry professionals is itself a skill.</p>
+    </div>
+    <div class="insight-card fade-in">
+      <h4>Key Takeaway</h4>
+      <p>Industry representatives emphasised that psychological awareness and effective organisational capabilities are just as vital as functional technical expertise.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TEAMWORK -->
+<section id="teamwork">
+  <div class="section-label fade-in">03 — Teamwork</div>
+
+  <div class="vision-block fade-in">
+    <h3>Context</h3>
+    <p>The midterm career fair project tested every dimension of collaborative work — from last-minute task reassignment to navigating absence due to illness. The outcome demonstrated that flexibility and solution-focus are more valuable than ideal circumstances.</p>
+  </div>
+
+  <div class="trait-row" style="margin-top: 2rem;">
+    <div class="trait-card fade-in">
+      <div class="trait-num">01</div>
+      <h4>Adaptability & Flexibility</h4>
+      <p>When assigned the audio enhancement task the night of the deadline, I remained adaptable — shifting priorities to ensure the entire process was smooth and effective.</p>
+    </div>
+    <div class="trait-card fade-in">
+      <div class="trait-num">02</div>
+      <h4>Generalist Mindset</h4>
+      <p>When the team encountered the audio problem, prior knowledge across multiple domains meant I knew exactly where to go and what to do — I can excel at whatever task is needed.</p>
+    </div>
+    <div class="trait-card fade-in">
+      <div class="trait-num">03</div>
+      <h4>Assertive but Understanding</h4>
+      <p>The best communication style in high-pressure settings is assertive. When illness prevented me from attending the career fair, being cooperative with attending teammates was key.</p>
+    </div>
+    <div class="trait-card fade-in">
+      <div class="trait-num">04</div>
+      <h4>Tech-First Problem Solving</h4>
+      <p>Facing a tight time window, I applied AI enhancement to get a head start. Instead of focusing on deadline stress, I kept attention on solutions and leveraged available tools.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PERSONAL SKILLS -->
+<section id="skills">
+  <div class="section-label fade-in">04 — Personal Skills</div>
+
+  <div class="skills-grid">
+    <div class="skill-block fade-in">
+      <div class="skill-icon">🧠</div>
+      <h4>Analytical & Functional Communication</h4>
+      <p>I use logic, structure, and data to ensure conversations are fruitful and straightforward. As a step-by-step learner, I understand each stage deeply — which means I can support anyone who feels lost in a process.</p>
+    </div>
+    <div class="skill-block fade-in">
+      <div class="skill-icon">⏱</div>
+      <h4>The Pomodoro Technique</h4>
+      <p>I apply focused 25-minute work sessions to reduce passive digital consumption. Working in concentrated blocks maintains sharp focus and a calm, steady approach — attention is the real resource.</p>
+    </div>
+    <div class="skill-block fade-in">
+      <div class="skill-icon">📅</div>
+      <h4>Strategic Time Blocking</h4>
+      <p>Specific time slots are allocated for prayer, classes, gym, and study sessions. Structure reduces decision fatigue and ensures every commitment — academic and personal — gets protected time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 CAREER EXPLORATION -->
+<section id="exploration">
+  <div class="section-label fade-in">05 — Career Exploration</div>
+
+  <div class="vision-block fade-in">
+    <h3>The Catalyst: Mercedes-Benz Factory Excursion</h3>
+    <p>The visit provided a deep, real-world look into modern manufacturing — not just theory, but the actual systems, people, and decisions that keep large-scale production running.</p>
+  </div>
+
+  <div class="timeline" style="margin-top: 2.5rem;">
+    <div class="timeline-item fade-in">
+      <h4>Workforce Observation: Mind vs. Hands</h4>
+      <p>A clear division emerged among the factory workforce. Employees either carry out physical tasks on the production floor, or direct overarching systems from behind a desk — the analytical layer commanding the physical one.</p>
+    </div>
+    <div class="timeline-item fade-in">
+      <h4>Solidifying My Path</h4>
+      <p>This contrast clarified my career motivation. I am drawn to strategic, office-oriented roles — using creativity and intellect to tackle hard logistical problems. The efficient organisational layout of the facility deepened my interest in AI integration, process modelling, and industrial engineering at the systems level.</p>
+    </div>
+    <div class="timeline-item fade-in">
+      <h4>Why This Matters</h4>
+      <p>Seeing the gap between the analytical and physical layers of manufacturing makes the value of Digital Twins and automated decision systems concrete — not abstract. That's the space I want to work in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 CAREER GUIDANCE -->
+<section id="guidance">
+  <div class="section-label fade-in">06 — Career Guidance</div>
+
+  <div class="guidance-grid">
+    <div class="guidance-card fade-in">
+      <h4>Career Services Utilisation</h4>
+      <ul>
+        <li>Focused consultation on identifying and securing internship opportunities</li>
+        <li>CV improvement and interview preparation services</li>
+        <li>Profile enhancement for stronger application outcomes</li>
+      </ul>
+    </div>
+    <div class="guidance-card fade-in">
+      <h4>Alternative Study Options</h4>
+      <ul>
+        <li>External summer courses in Artificial Intelligence</li>
+        <li>Lean Six Sigma certification for technical edge</li>
+        <li>Short-term academic extension programmes</li>
+      </ul>
+    </div>
+    <div class="guidance-card fade-in">
+      <h4>German Job Market</h4>
+      <ul>
+        <li>High German proficiency is crucial — non-negotiable baseline</li>
+        <li>HR staff favour confident candidates with strong personalities</li>
+        <li>Soft skills differentiate candidates with equal hard skills</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 07 OVERALL HIGHLIGHT -->
+<section>
+  <div class="section-label fade-in">07 — Overall Highlight</div>
+
+  <div class="highlight-box fade-in">
+    <h2>Career success requires<br>assembling the right<br><span>building blocks.</span></h2>
+    <p>This realisation will stick because it turns an overwhelming ambition into an applicable blueprint. Every skill, every experience, every connection is a deliberate piece of a larger system.</p>
+    <div class="blocks-row">
+      <div class="block-pill">AI & Logistics Proficiency</div>
+      <div class="block-pill">German Fluency</div>
+      <div class="block-pill">Assertive Communication</div>
+      <div class="block-pill">Real Work Experience</div>
+      <div class="block-pill">Data Analysis</div>
+      <div class="block-pill">Research Mindset</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Taim Salimoun &nbsp;·&nbsp; Constructor University &nbsp;·&nbsp; <a href="https://linkedin.com/in/taim-salimoun">LinkedIn</a> &nbsp;·&nbsp; <a href="mailto:tsalimoun@constructor.university">tsalimoun@constructor.university</a></p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
